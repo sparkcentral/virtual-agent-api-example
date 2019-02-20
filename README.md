@@ -38,7 +38,7 @@ handles both a `CONVERSATION_STARTED` event and a `INBOUND_MESSAGE_RECEIVED` eve
 we can create a Dialogflow context, so the bot can use contact attributes in its responses and fulfillment calls. In the case
 of an `INBOUND_MESSAGE_RECEIVED` event, we call `detect_intent` on the Dialogflow API. Dialogflow will answer us with a
 `DetectIntentResponse`. This response contains the answer from the bot and other metadata (such as the detected intent, etc). In
-our example we send the answer from the bot to the topic, and apply the detected intent as a topic.
+our example we send the answer from the bot to the contact, and apply the detected intent as a topic.
 
 In certain cases, you might want to send an answer using the REST API. You might want to send a message coming from one 
 of your backend systems, or during a bot fulfillment. You can check out `app/rest_client.py` for this. You will need an
