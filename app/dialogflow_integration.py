@@ -40,10 +40,14 @@ class DialogflowClient:
         for key, value in attributes.items():
             parameters[key] = value
 
-        self.context_client.create_context(parent, types.Context(
-            name=f"projects/{self.project_id}/agent/sessions/{conversation_id}/contexts/{context_name}",
-            lifespan_count=5,
-            parameters=parameters))
+        self.context_client.create_context(
+            parent,
+            types.Context(
+                name=f"projects/{self.project_id}/agent/sessions/{conversation_id}/contexts/{context_name}",
+                lifespan_count=5,
+                parameters=parameters,
+            ),
+        )
 
     def ask(self, conversation_id, question):
         """
@@ -57,5 +61,7 @@ class DialogflowClient:
         """
 
         session = self.session_client.session_path(self.project_id, conversation_id)
-        query_input = types.QueryInput(text=types.TextInput(text=question, language_code='en-US'))
+        query_input = types.QueryInput(
+            text=types.TextInput(text=question, language_code="en-US")
+        )
         return self.session_client.detect_intent(session, query_input)
